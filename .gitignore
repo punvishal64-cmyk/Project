@@ -1,0 +1,22 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Database
+*.db
+
+# Uploads
+backend/uploads/
+
+# Google Credentials
+backend/credentials/
+
+# Node
+frontend/node_modules/
+
+# Environment
+.env
+
+# VS Code
+.vscode/
