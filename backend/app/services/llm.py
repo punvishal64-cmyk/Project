@@ -1,5 +1,12 @@
-from ollama import chat
 import json
+import os
+
+from dotenv import load_dotenv
+from google import genai
+
+load_dotenv()
+
+client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 
 def categorize_activity(transcript: str) -> dict:
@@ -18,13 +25,15 @@ Transcript:
 {transcript}
 """
 
-    response = chat(
-        model="llama3.2",
-        messages=[{"role": "user", "content": prompt}],
+    response = client.models.generate_content(
+        model="gemini-2.5-flash",
+        contents=prompt,
     )
 
     try:
-        return json.loads(response.message.content)
+        text = response.text.strip()
+        text = text.replace("```json", "").replace("```", "").strip()
+        return json.loads(text)
 
     except json.JSONDecodeError:
         return {
