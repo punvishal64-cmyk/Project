@@ -22,6 +22,9 @@ async def upload_audio(file: UploadFile = File(...),
                        db: Session = Depends(get_db),
                        ):
     
+
+    print(file.filename)
+    print(file.content_type)
     file_path = UPLOAD_DIR / file.filename
 
     with open(file_path, "wb") as buffer:

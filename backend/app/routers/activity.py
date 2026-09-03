@@ -20,3 +20,4 @@ def create_activity(
     db.refresh(db_activity)
 
     return db_activity
+

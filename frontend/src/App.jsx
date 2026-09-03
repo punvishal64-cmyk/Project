@@ -39,6 +39,8 @@ function App() {
 
       try {
         setLoading(true);
+        console.log(audioBlob.type);
+        console.log(audioBlob.size);
         const response = await api.post("/voice/upload", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
